@@ -29,11 +29,11 @@ Role Strategy's UI. The script will display a tooltip when the mouse is over the
 
 ##Installation
 
-1. Install Greasemonkey 
-    * [Firefox extension](https://addons.mozilla.org/fr/firefox/addon/greasemonkey/)
+1. Install Tampermonkey 
+    * [Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
     * [Chrome extension](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 2. Click on the link [Install Jenkins Role Strategy UI Enhancer](https://github.com/Brialius/jenkins-role-strategy-ui-enhancer/raw/master/jenkins-role-strategy-ui-enhancer/jenkins-role-strategy-ui-enhancer.user.js)
-3. A Greasemonkey dialong should poped-up.
+3. A Tampermonkey dialong should poped-up.
 4. Click on install
 5. Go to your Jenkins and enjoy!!
 
