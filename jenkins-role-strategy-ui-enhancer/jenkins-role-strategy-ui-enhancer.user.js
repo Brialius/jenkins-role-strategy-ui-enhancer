@@ -29,73 +29,48 @@
  * SOFTWARE.
  */
 
-/**
- * Bootstrap to inject a custom JS function into the page and take advantage
- * of the javascript libraries included in the host page.
- */  
-window.addEventListener("load", function() {    
-   createScript(main);      
-}, false);
+(function () {
+    'use strict';
+    var builToolTips = function (tableId) {
+        Event.observe(tableId, 'mouseover', function (event) {
+            /**
+             * This is a trick to make the cell as event catcher. The cell's mouseover event triggers the input's tooltip construction.
+             * If you build the Tooltip when the mouse is over the table cell, then you have to reproduce a mouse over event to display it.
+             */
+            var cell = $(Event.element(event)).down('input').up('tr.permission-row td');
 
+            //The username is stored in the parent row
+            var username = cell.up('tr').readAttribute('name');
+            //The tooltip will be built againt the checkbox input
+            var input = cell.down('input');
+            //The role is stored in the child checkbox input
+            var role = input.readAttribute('name');
+            //Compute an id for this input
+            var inputId = username + "-" + role;
 
-/**
- * Create a script element and inject a JS function into.
- */ 
-function createScript(fn) {
-   var script = document.createElement('script');
-   script.setAttribute("type", "application/javascript");   
-   script.textContent = '(' + fn + ')();'; //The JS function to run
-   document.body.appendChild(script); // run the script
-   document.body.removeChild(script); // clean up
-}
+            if (!input.hasAttribute('id')) {
+                input.setAttribute('id', inputId);
 
-
-
-/**
- * The function injected in the page
- */ 
-function main(){
- 
-    var builToolTips = function(tableId){
-       Event.observe(tableId, 'mouseover', function(event) {   
-          /**
-           * This is a trick to make the cell as event catcher. The cell's mouseover event triggers the input's tooltip construction.
-           * If you build the Tooltip when the mouse is over the table cell, then you have to reproduce a mouse over event to display it.
-           */
-          var cell = $(Event.element(event)).down('input').up('tr.permission-row td');
-          
-          //The username is stored in the parent row
-          var username = cell.up('tr').readAttribute('name');
-          //The tooltip will be built againt the checkbox input
-          var input = cell.down('input')
-          //The role is stored in the child checkbox input
-          var role = input.readAttribute('name');
-          //Compute an id for this input
-          var inputId = username + "-" + role;     
-             
-          if (!input.hasAttribute('id')) {
-             input.setAttribute('id', inputId);             
-             
-             /**
-              * UI enhancement Bascially it take off the "[ ]" and split the pair on 2 lines.         
-              * From [username]-[rolename] or anonymous-[rolename] to
-              * User: username
-              * Role: rolename                                                   
-              */                                       
-             var tooltipText = inputId.sub(/(\[)?(.*?)(\])?-\[(.*?)\]/,
-                                    'User: #{2}<br />Role: #{4}');
-             /*
+                /**
+                 * UI enhancement Bascially it take off the "[ ]" and split the pair on 2 lines.
+                 * From [username]-[rolename] or anonymous-[rolename] to
+                 * User: username
+                 * Role: rolename
+                 */
+                var tooltipText = inputId.sub(/(\[)?(.*?)(\])?-\[(.*?)\]/,
+                    'User: #{2}<br />Role: #{4}');
+                /*
               * Finally, create a tooltip for the input embeds in this table cell
               * We use the present YUI! libraries to build a YAHOO tooltip
-              */                                                 
-             new YAHOO.widget.Tooltip("Tooltip " + inputId,  
-	                         { context:inputId,  
-	                           text:tooltipText });                            
-              
-          }                     
-       });
-    }    
-    
+              */
+                new YAHOO.widget.Tooltip("Tooltip " + inputId,
+                    {
+                        context: inputId,
+                        text: tooltipText
+                    });
+            }
+        });
+    };
     builToolTips(globalRoles);
     builToolTips(projectRoles);
-}
+})();

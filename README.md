@@ -1,4 +1,5 @@
 # Jenkins Role Strategy UI enhancer
+It was forked from [danielpetisme](https://github.com/danielpetisme/jenkins-role-strategy-ui-enhancer)
 
 ##Context
 
@@ -31,7 +32,7 @@ Role Strategy's UI. The script will display a tooltip when the mouse is over the
 1. Install Greasemonkey 
     * [Firefox extension](https://addons.mozilla.org/fr/firefox/addon/greasemonkey/)
     * [Chrome extension](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-2. Click on the link [Install Jenkins Role Strategy UI Enhancer](https://github.com/danielpetisme/jenkins-role-strategy-ui-enhancer/raw/master/jenkins-role-strategy-ui-enhancer/jenkins-role-strategy-ui-enhancer.user.js)
+2. Click on the link [Install Jenkins Role Strategy UI Enhancer](https://github.com/Brialius/jenkins-role-strategy-ui-enhancer/blob/master/jenkins-role-strategy-ui-enhancer/jenkins-role-strategy-ui-enhancer.user.js)
 3. A Greasemonkey dialong should poped-up.
 4. Click on install
 5. Go to your Jenkins and enjoy!!
